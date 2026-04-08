@@ -20,38 +20,47 @@ def spiral(word: str) -> str:
 
     return "".join(q)
 
-filepath = sys.argv[1]
 
-if not os.path.exists(filepath):
-    print(f"🫤 {filepath} does not exist...")
+if len(sys.argv) > 2:
+    print("🤯 too many args! I just need the filepath...")
+    sys.exit(1)
+elif len(sys.argv) < 2:
+    print("🤏 you forgot to pass a filepath...")
     sys.exit(1)
 
-elif os.path.isdir(filepath):
-    print(f"🤔 {filepath} is a directory...")
-    sys.exit(1)
 else:
+    filepath = sys.argv[1]
 
-    print("🌪️ spiral.py - a weird word obfuscation algorithm")
+    if not os.path.exists(filepath):
+        print(f"🫤 {filepath} does not exist...")
+        sys.exit(1)
 
-    print()
+    elif os.path.isdir(filepath):
+        print(f"🤔 {filepath} is a directory...")
+        sys.exit(1)
+    else:
 
-    print(f"👀 Reading {filepath}...")
-    with open(filepath, "r") as f:
-        lines = f.readlines()
+        print("🌪️ spiral.py - a weird word obfuscation algorithm")
 
-    print(f"✅ Read {filepath} with {len(lines):,} lines!")
+        print()
 
-    print(f"✍️ Writing {filepath}-spiral.txt...")
+        print(f"👀 Reading {filepath}...")
+        with open(filepath, "r") as f:
+            lines = f.readlines()
 
-    name = os.path.splitext(filepath)[0]
+        print(f"✅ Read {filepath} with {len(lines):,} lines!")
 
-    with open(f"{name}-spiral.txt", "w") as f:
-        for i in lines:
-            modified = spiral(i)
-            f.write(modified)
+        print(f"✍️ Writing {filepath}-spiral.txt...")
 
-    print(f"🎉 Written {name}-spiral.txt!")
+        name = os.path.splitext(filepath)[0]
 
-    print()
+        with open(f"{name}-spiral.txt", "w") as f:
+            for i in lines:
+                modified = spiral(i)
+                f.write(modified)
 
-    print("👋 Goodbye")
+        print(f"🎉 Written {name}-spiral.txt!")
+
+        print()
+
+        print("👋 Goodbye")
