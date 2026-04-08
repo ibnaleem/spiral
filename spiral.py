@@ -43,7 +43,7 @@ else:
 
     print(f"✍️ Writing {filepath}-spiral.txt...")
 
-    name = filepath.split(".")[0]
+    name = os.path.splitext(filepath)[0]
 
     with open(f"{name}-spiral.txt", "w") as f:
         for i in lines:
